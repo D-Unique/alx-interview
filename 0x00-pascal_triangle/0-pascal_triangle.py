@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """
  This module defines a function that generates pascal_triangle of n
 """

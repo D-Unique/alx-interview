@@ -3,6 +3,7 @@
  This module defines a function that generates pascal_triangle of n
 """
 
+
 def pascal_triangle(n):
     """
     Represent Pascal's triangle of size n.
@@ -10,7 +11,6 @@ def pascal_triangle(n):
     Return a list of integers contain in the
     generated triangle
     """
-   
     if n <= 0:
         return []
 

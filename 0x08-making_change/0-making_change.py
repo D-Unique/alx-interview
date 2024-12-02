@@ -3,26 +3,24 @@
 """Athor: Unigwe Emmanuel"""
 
 
-def makeChange(coins, sum):
-    dp = [[0] * (sum + 1) for _ in range(len(coins))]
+def makeChange(coins, total):
+    """Given a pile of coins of different values, determine the fewest number of coins needed to meet a given amount total."""
+    if total <= 0:
+        return 0
 
-    for i in range(len(coins) - 1, -1, -1):
-        for j in range(1, sum + 1):
-            dp[i][j] = float('inf')
-            take = float('inf')
-            noTake = float('inf')
+    coins = sorted(coins, reverse=True)
+    num_coins = 0
+    remaining_total = total
 
-            # If we take coins[i] coin
-            if j - coins[i] >= 0:
-                take = dp[i][j - coins[i]]
-                if take != float('inf'):
-                    take += 1
+    for coin in coins:
+        if remaining_total <= 0:
+            break
+        # Use as many of the current coin as possible
+        count = remaining_total // coin
+        num_coins += count
+        remaining_total -= coin * count
 
-            if i + 1 < len(coins):
-                noTake = dp[i + 1][j]
-
-            dp[i][j] = min(take, noTake)
-
-    if dp[0][sum] != float('inf'):
-        return dp[0][sum]
+    # Check if the total was met
+    if remaining_total == 0:
+        return num_coins
     return -1
